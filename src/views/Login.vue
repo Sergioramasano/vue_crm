@@ -61,7 +61,7 @@
       password:{required, minLength:minLength(6)}
     },
     methods:{
-      submitHandler(){
+    async  submitHandler(){
         if(this.$v.$invalid){
           this.$v.$touch();
           return
@@ -70,7 +70,13 @@
           email : this.email,
           password : this.password
         }
-        this.$router.push('/')
+        try{
+          await this.$store.dispatch('login', formData)
+          this.$router.push('/')
+        } catch(e){
+
+        }
+
       }
     },
     mounted(){
