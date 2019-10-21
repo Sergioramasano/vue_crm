@@ -11,7 +11,7 @@ export default {
     },
     async register({dispatch}, {email, password, name}) {
       try {
-        await firebase.auth().signInWithEmailAndPassword(email, password)
+        await firebase.auth().createUserWithEmailAndPassword(email, password)
         const uid = await dispatch('getUid')
         await firebase.database().ref(`/users/${uid}/info`).set({
           bill: 10000,
