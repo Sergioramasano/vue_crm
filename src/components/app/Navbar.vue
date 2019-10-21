@@ -65,7 +65,8 @@ if(this.dropdown && this.dropdown.destroy){
 }
     },
     methods:{
-      logout(){
+     async logout(){
+         await this.$store.dispatch('logout')
         this.$router.push('/login?message=logout')
       }
     }
