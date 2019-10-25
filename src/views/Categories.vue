@@ -4,39 +4,40 @@
       <h3>Категории</h3>
     </div>
     <section>
-      <Loader v-if="loading" />
+      <Loader v-if="loading"/>
       <div v-else class="row">
-     <CategoryCreate @created="addNewCategory"/>
-     <CategoryEdit/>
+        <CategoryCreate @created="addNewCategory"/>
+        <CategoryEdit :categories="categories"/>
       </div>
     </section>
   </div>
 </template>
 
 <script>
-  import  CategoryCreate from '@/components/CategoryCreate';
-  import  CategoryEdit from '@/components/CategoryEdit';
-  export default {
-    name: 'Categories',
-      data:()=>({
-          categories:[],
-          loading:true
-      }),
-      components:{
-          CategoryCreate,
-          CategoryEdit
-      },
-    async  mounted(){
-        this.categories = await this.$store.dispatch('fetchCategories')
-        console.log(this.categories)
-        this.loading = false
-      },
-      methods:{
-          addNewCategory(category){
-              this.categories.push(category)
-          }
-      }
-  }
+    import CategoryCreate from '@/components/CategoryCreate';
+    import CategoryEdit from '@/components/CategoryEdit';
+
+    export default {
+        name: 'Categories',
+        data: () => ({
+            categories: [],
+            loading: true
+        }),
+        components: {
+            CategoryCreate,
+            CategoryEdit
+        },
+        async mounted() {
+            this.categories = await this.$store.dispatch('fetchCategories')
+            console.log(this.categories)
+            this.loading = false
+        },
+        methods: {
+            addNewCategory(category) {
+                this.categories.push(category)
+            }
+        }
+    }
 </script>
 
 <style scoped>
