@@ -70,6 +70,21 @@
         <router-link to="/login">Войти</router-link>
       </p>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </form>
 </template>
 
